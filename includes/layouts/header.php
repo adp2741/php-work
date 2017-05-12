@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html lang="en">
 	<head>
-		<title>untitled</title>
+		<title>Widget Corp</title>
 		<link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
