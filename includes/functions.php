@@ -55,7 +55,7 @@
 		$query  = "SELECT * ";
 		$query .= "FROM pages ";
 		$query .= "WHERE visible = 1 ";
-		$query .= "AND subject_id = {$safe_subject_id} ";
+		$query .= "AND subjectId = {$safe_subject_id} ";
 		$query .= "ORDER BY position ASC";
 		$page_set = mysqli_query($connection, $query);
 		confirm_query($page_set);
@@ -129,7 +129,7 @@
 			$output .= "<a href=\"manage_content.php?subject=";
 			$output .= urlencode($subject["id"]);
 			$output .= "\">";
-			$output .= htmlentities($subject["menu_name"]);
+			$output .= htmlentities($subject["menuName"]);
 			$output .= "</a>";
 			
 			$page_set = find_pages_for_subject($subject["id"]);
@@ -143,7 +143,7 @@
 				$output .= "<a href=\"manage_content.php?page=";
 				$output .= urlencode($page["id"]);
 				$output .= "\">";
-				$output .= htmlentities($page["menu_name"]);
+				$output .= htmlentities($page["menuName"]);
 				$output .= "</a></li>";
 			}
 			mysqli_free_result($page_set);

@@ -17,7 +17,7 @@
 		<?php echo message(); ?>
 		<?php if ($current_subject) { ?>
 	    <h2>Manage Subject</h2>
-			Menu name: <?php echo htmlentities($current_subject["menu_name"]); ?><br />
+			Menu name: <?php echo htmlentities($current_subject["menuName"]); ?><br />
 			Position: <?php echo $current_subject["position"]; ?><br />
 			Visible: <?php echo $current_subject["visible"] == 1 ? 'yes' : 'no'; ?><br />
 			<br />
@@ -32,7 +32,7 @@
 						echo "<li>";
 						$safe_page_id = urlencode($page["id"]);
 						echo "<a href=\"manage_content.php?page={$safe_page_id}\">";
-						echo htmlentities($page["menu_name"]);
+						echo htmlentities($page["menuName"]);
 						echo "</a>";
 						echo "</li>";
 					}
@@ -44,7 +44,7 @@
 
 		<?php } elseif ($current_page) { ?>
 			<h2>Manage Page</h2>
-			Menu name: <?php echo htmlentities($current_page["menu_name"]); ?><br />
+			Menu name: <?php echo htmlentities($current_page["menuName"]); ?><br />
 			Position: <?php echo $current_page["position"]; ?><br />
 			Visible: <?php echo $current_page["visible"] == 1 ? 'yes' : 'no'; ?><br />
 			Content:<br />

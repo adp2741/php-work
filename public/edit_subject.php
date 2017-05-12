@@ -18,10 +18,10 @@ if (isset($_POST['submit'])) {
 	// Process the form
 	
 	// validations
-	$required_fields = array("menu_name", "position", "visible");
+	$required_fields = array("menuName", "position", "visible");
 	validate_presences($required_fields);
 	
-	$fields_with_max_lengths = array("menu_name" => 30);
+	$fields_with_max_lengths = array("menuName" => 30);
 	validate_max_lengths($fields_with_max_lengths);
 	
 	if (empty($errors)) {
@@ -29,12 +29,12 @@ if (isset($_POST['submit'])) {
 		// Perform Update
 
 		$id = $current_subject["id"];
-		$menu_name = mysql_prep($_POST["menu_name"]);
+		$menuName = mysql_prep($_POST["menuName"]);
 		$position = (int) $_POST["position"];
 		$visible = (int) $_POST["visible"];
 	
 		$query  = "UPDATE subjects SET ";
-		$query .= "menu_name = '{$menu_name}', ";
+		$query .= "menuName = '{$menuName}', ";
 		$query .= "position = {$position}, ";
 		$query .= "visible = {$visible} ";
 		$query .= "WHERE id = {$id} ";
@@ -72,10 +72,10 @@ if (isset($_POST['submit'])) {
 		?>
 		<?php echo form_errors($errors); ?>
 		
-		<h2>Edit Subject: <?php echo htmlentities($current_subject["menu_name"]); ?></h2>
+		<h2>Edit Subject: <?php echo htmlentities($current_subject["menuName"]); ?></h2>
 		<form action="edit_subject.php?subject=<?php echo urlencode($current_subject["id"]); ?>" method="post">
 		  <p>Menu name:
-		    <input type="text" name="menu_name" value="<?php echo htmlentities($current_subject["menu_name"]); ?>" />
+		    <input type="text" name="menuName" value="<?php echo htmlentities($current_subject["menuName"]); ?>" />
 		  </p>
 		  <p>Position:
 		    <select name="position">

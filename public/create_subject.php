@@ -7,15 +7,15 @@
 if (isset($_POST['submit'])) {
 	// Process the form
 	
-	$menu_name = mysql_prep($_POST["menu_name"]);
+	$menuName = mysql_prep($_POST["menuName"]);
 	$position = (int) $_POST["position"];
 	$visible = (int) $_POST["visible"];
 	
 	// validations
-	$required_fields = array("menu_name", "position", "visible");
+	$required_fields = array("menuName", "position", "visible");
 	validate_presences($required_fields);
 	
-	$fields_with_max_lengths = array("menu_name" => 30);
+	$fields_with_max_lengths = array("menuName" => 30);
 	validate_max_lengths($fields_with_max_lengths);
 	
 	if (!empty($errors)) {
@@ -24,9 +24,9 @@ if (isset($_POST['submit'])) {
 	}
 	
 	$query  = "INSERT INTO subjects (";
-	$query .= "  menu_name, position, visible";
+	$query .= "  menuName, position, visible";
 	$query .= ") VALUES (";
-	$query .= "  '{$menu_name}', {$position}, {$visible}";
+	$query .= "  '{$menuName}', {$position}, {$visible}";
 	$query .= ")";
 	$result = mysqli_query($connection, $query);
 
