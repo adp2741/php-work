@@ -114,7 +114,7 @@
 		}
 	}
 
-	// navigation takes 2 arguments
+	// Navigation takes 2 arguments
 	// - the current subject array or null
 	// - the current page array or null
 	function navigation($subject_array, $page_array) {

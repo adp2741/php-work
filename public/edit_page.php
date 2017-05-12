@@ -20,16 +20,16 @@ if (isset($_POST['submit'])) {
   // Process the form
   
   $id = $current_page["id"];
-  $menu_name = mysql_prep($_POST["menu_name"]);
+  $menuName = mysql_prep($_POST["menuName"]);
   $position = (int) $_POST["position"];
   $visible = (int) $_POST["visible"];
   $content = mysql_prep($_POST["content"]);
 
   // validations
-  $required_fields = array("menu_name", "position", "visible", "content");
+  $required_fields = array("menuName", "position", "visible", "content");
   validate_presences($required_fields);
   
-  $fields_with_max_lengths = array("menu_name" => 30);
+  $fields_with_max_lengths = array("menuName" => 30);
   validate_max_lengths($fields_with_max_lengths);
   
   if (empty($errors)) {
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
     // Perform Update
 
     $query  = "UPDATE pages SET ";
-    $query .= "menu_name = '{$menu_name}', ";
+    $query .= "menuName = '{$menuName}', ";
     $query .= "position = {$position}, ";
     $query .= "visible = {$visible}, ";
     $query .= "content = '{$content}' ";
@@ -72,15 +72,15 @@ if (isset($_POST['submit'])) {
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
     
-    <h2>Edit Page: <?php echo htmlentities($current_page["menu_name"]); ?></h2>
+    <h2>Edit Page: <?php echo htmlentities($current_page["menuName"]); ?></h2>
     <form action="edit_page.php?page=<?php echo urlencode($current_page["id"]); ?>" method="post">
       <p>Menu name:
-        <input type="text" name="menu_name" value="<?php echo htmlentities($current_page["menu_name"]); ?>" />
+        <input type="text" name="menuName" value="<?php echo htmlentities($current_page["menuName"]); ?>" />
       </p>
       <p>Position:
         <select name="position">
         <?php
-          $page_set = find_pages_for_subject($current_page["subject_id"]);
+          $page_set = find_pages_for_subject($current_page["subjectId"]);
           $page_count = mysqli_num_rows($page_set);
           for($count=1; $count <= $page_count; $count++) {
             echo "<option value=\"{$count}\"";

@@ -19,10 +19,10 @@ if (isset($_POST['submit'])) {
   // Process the form
   
   // validations
-  $required_fields = array("menu_name", "position", "visible", "content");
+  $required_fields = array("menuName", "position", "visible", "content");
   validate_presences($required_fields);
   
-  $fields_with_max_lengths = array("menu_name" => 30);
+  $fields_with_max_lengths = array("menuName" => 30);
   validate_max_lengths($fields_with_max_lengths);
   
   if (empty($errors)) {
@@ -30,16 +30,16 @@ if (isset($_POST['submit'])) {
 
     // make sure you add the subject_id!
     $subject_id = $current_subject["id"];
-    $menu_name = mysql_prep($_POST["menu_name"]);
+    $menuName = mysql_prep($_POST["menuName"]);
     $position = (int) $_POST["position"];
     $visible = (int) $_POST["visible"];
     // be sure to escape the content
     $content = mysql_prep($_POST["content"]);
   
     $query  = "INSERT INTO pages (";
-    $query .= "  subject_id, menu_name, position, visible, content";
+    $query .= "  subjectId, menuName, position, visible, content";
     $query .= ") VALUES (";
-    $query .= "  {$subject_id}, '{$menu_name}', {$position}, {$visible}, '{$content}'";
+    $query .= "  {$subject_id}, '{$menuName}', {$position}, {$visible}, '{$content}'";
     $query .= ")";
     $result = mysqli_query($connection, $query);
 
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
     <h2>Create Page</h2>
     <form action="new_page.php?subject=<?php echo urlencode($current_subject["id"]); ?>" method="post">
       <p>Menu name:
-        <input type="text" name="menu_name" value="" />
+        <input type="text" name="menuName" value="" />
       </p>
       <p>Position:
         <select name="position">
