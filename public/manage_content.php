@@ -1,9 +1,10 @@
 <?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
-<?php include("../includes/layouts/header.php"); ?>
+<?php confirm_logged_in(); ?>
 
-<!-- Gets current subject and current page values -->
+<?php $layout_context = "admin"; ?>
+<?php include("../includes/layouts/header.php"); ?>
 <?php find_selected_page(); ?>
 
 <div id="main">
@@ -11,7 +12,6 @@
 		<br />
 		<a href="admin.php">&laquo; Main menu</a><br />
 		
-		<!-- Show all links via php -->
 		<?php echo navigation($current_subject, $current_page); ?>
 		<br />
 		<a href="new_subject.php">+ Add a subject</a>
@@ -30,7 +30,7 @@
 				<h3>Pages in this subject:</h3>
 				<ul>
 				<?php 
-					$subject_pages = find_pages_for_subject($current_subject["id"]);
+					$subject_pages = find_pages_for_subject($current_subject["id"], false);
 					while($page = mysqli_fetch_assoc($subject_pages)) {
 						echo "<li>";
 						$safe_page_id = urlencode($page["id"]);

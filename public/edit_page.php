@@ -2,12 +2,13 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 <?php require_once("../includes/validation_functions.php"); ?>
+<?php confirm_logged_in(); ?>
 
 <?php find_selected_page(); ?>
 
 <?php
-  // Unlike new_page.php, we don't need a subject_id to be sent
-  // We already have it stored in pages.subject_id.
+  // Unlike new_page.php, we don't need a subjectId to be sent
+  // We already have it stored in pages.subjectId.
   if (!$current_page) {
     // page ID was missing or invalid or 
     // page couldn't be found in database
@@ -62,6 +63,7 @@ if (isset($_POST['submit'])) {
 
 ?>
 
+<?php $layout_context = "admin"; ?>
 <?php include("../includes/layouts/header.php"); ?>
 
 <div id="main">
@@ -80,7 +82,7 @@ if (isset($_POST['submit'])) {
       <p>Position:
         <select name="position">
         <?php
-          $page_set = find_pages_for_subject($current_page["subjectId"]);
+          $page_set = find_pages_for_subject($current_page["subjectId"], false);
           $page_count = mysqli_num_rows($page_set);
           for($count=1; $count <= $page_count; $count++) {
             echo "<option value=\"{$count}\"";
